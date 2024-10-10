@@ -1,0 +1,51 @@
+<o-form-layout-manager attr="WarehousePart" mode="tab" title="WAREHOUSEPART">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="WarehousePartTable" 
+            service="WarehousePart" 
+            entity="WarehousePart" 
+            title="WAREHOUSEPART"
+            keys="id"
+            columns="id;part_id;warehouse_id;quantity" 
+            header-actions="R;D"
+            visible-columns="id;part_id;warehouse_id;quantity"  
+            sort-columns="id" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+            
+            <o-table-column attr="part_id" title="part_id">
+    <o-table-cell-renderer-service attr="part_id" 
+        service="Part" entity="PartType" columns="id;name"
+        parent-keys="id:part_id"
+        value-column="name" keys="part_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="warehouse_id" title="warehouse_id">
+    <o-table-cell-renderer-service attr="warehouse_id" 
+        service="Warehouse" entity="WarehouseType" columns="id;id"
+        parent-keys="id:warehouse_id"
+        value-column="id" keys="warehouse_id"
+        visible-columns="id" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column #quantity attr="quantity" title="quantity" type="integer" editable="no" required="yes" content-align="center"></o-table-column>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form-layout-manager>

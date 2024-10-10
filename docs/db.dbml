@@ -1,0 +1,99 @@
+// Copy this text, paste to https://dbdiagram.io/d
+// Or, https://databasediagram.com/app
+
+Table Car {
+    id INTEGER
+    vin VARCHAR
+    model_id INTEGER
+    year INTEGER
+    }
+
+Table CarModel {
+    id INTEGER
+    name VARCHAR
+    manufacturer_id INTEGER
+    }
+
+Table Manufacturer {
+    id INTEGER
+    name VARCHAR
+    country VARCHAR
+    }
+
+Table CarPart {
+    id INTEGER
+    car_id INTEGER
+    part_id INTEGER
+    quantity INTEGER
+    }
+
+Table Part {
+    id INTEGER
+    name VARCHAR
+    category_id INTEGER
+    }
+
+Table Customer {
+    id INTEGER
+    name VARCHAR
+    email VARCHAR
+    }
+
+Table Order {
+    id INTEGER
+    customer_id INTEGER
+    date DATETIME
+    }
+
+Table OrderDetail {
+    id INTEGER
+    order_id INTEGER
+    part_id INTEGER
+    quantity INTEGER
+    }
+
+Table PartCategory {
+    id INTEGER
+    name VARCHAR
+    }
+
+Table Supplier {
+    id INTEGER
+    name VARCHAR
+    contact_info VARCHAR
+    }
+
+Table SupplierPart {
+    id INTEGER
+    supplier_id INTEGER
+    part_id INTEGER
+    price FLOAT
+    }
+
+Table Warehouse {
+    id INTEGER
+    location VARCHAR
+    }
+
+Table WarehousePart {
+    id INTEGER
+    warehouse_id INTEGER
+    part_id INTEGER
+    quantity INTEGER
+    }
+
+
+
+// Relationships
+    Ref: Car.(model_id) < CarModel.(id)
+    Ref: CarModel.(manufacturer_id) < Manufacturer.(id)
+    Ref: CarPart.(car_id) < Car.(id)
+    Ref: CarPart.(part_id) < Part.(id)
+    Ref: Part.(category_id) < PartCategory.(id)
+    Ref: Order.(customer_id) < Customer.(id)
+    Ref: OrderDetail.(order_id) < Order.(id)
+    Ref: OrderDetail.(part_id) < Part.(id)
+    Ref: SupplierPart.(part_id) < Part.(id)
+    Ref: SupplierPart.(supplier_id) < Supplier.(id)
+    Ref: WarehousePart.(part_id) < Part.(id)
+    Ref: WarehousePart.(warehouse_id) < Warehouse.(id)
